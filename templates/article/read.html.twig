@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    
+    <!-- Detail -->
+    <div class="detail">
+        <div class="container-fluid">
+            <div class="row my-5">
+                <div class="col-md-4 my-5 text-center">
+                    <h2 class="mb-3">Description</h2>
+                    <p>Région: Communauté urbaine de Niamey</p>
+                    <p>Quartier: Maouray-Kwaratagui</p>
+                    <p>Forme: Carré</p>
+                    <p>Superficie: 130 m²</p>
+                    <p>Maison possédant un titre foncier</p>
+                </div>
+                <div class="col-md-4 my-5">
+                    <img src="{{ asset('img/' ~ article.id ~ '.jpg') }}" class="w-100">
+                </div>
+                <div class="col-md-4 my-5 d-flex align-self-center justify-content-end">
+                    <h3>Prix : <strong>300.000 FCFA</strong></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Detail end -->
+
+    <!-- Suggestion -->
+    <div class="container-fluid elements">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <p>Ceci pourrait vous intéresser</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+
+            <div class="col-md-4 col-sm-6 col-xs-12 my-4">
+                <img src="{{ asset('img/' ~ article.id ~ '.jpg') }}" class="w-100">
+                <h4 class="my-4">Maison/Etage FX</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="d-flex justify-content-between">
+                    <a href="detail.html" class="btn btn-outline-dark btn-md">Détail</a>
+                    <a href="detail.html" class="btn btn-outline-dark btn-md">Prix</a>
+                </p>
+            </div>
+
+
+
+            <div class="col-md-4 col-sm-6 col-xs-12 my-4">
+                <img src="{{ asset('img/' ~ article.id ~ '.jpg') }}" class="w-100">
+                <h4 class="my-4">Maison/Etage FX</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="d-flex justify-content-between">
+                    <a href="index.html" class="btn btn-outline-dark btn-md">Détail</a>
+                    <a href="index.html" class="btn btn-outline-dark btn-md">Prix</a>
+                </p>
+            </div>
+
+
+            <div class="col-md-4 col-sm-6 col-xs-12 my-4">
+                <img src="{{ asset('img/' ~ article.id ~ '.jpg') }}" class="w-100">
+                <h4 class="my-4">Maison/Etage FX</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="d-flex justify-content-between">
+                    <a href="index.html" class="btn btn-outline-dark btn-md">Détail</a>
+                    <a href="index.html" class="btn btn-outline-dark btn-md">Prix</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- Suggestion end -->
+
+{% endblock %}
