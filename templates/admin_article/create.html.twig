@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminArticleController!{% endblock %}
+
+{% block body %}
+    <h1>Modifier les informations de cet élément</h1>
+    <div class="container">
+        {{ include('admin_article/_form.html.twig', {form: form, buttonContent: "Créer"}) }}
+    </div>
+{% endblock %}
