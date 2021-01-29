@@ -52,6 +52,11 @@ class Article
      */
     private $price;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $category = "Inconnue";
+
     public function __construct() {
         $this->created_at = new \DateTime();
     }
@@ -165,5 +170,17 @@ class Article
       }
 
       return $text;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 }

@@ -1,7 +1,8 @@
 {{ form_start(form) }}
     {{ form_row(form.title, {'label': "Titre"}) }}
+    {{ form_row(form.category, {'label': "Catégorie"}) }}
     {{ form_row(form.content, {'label': "Contenu"}) }}
     {{ form_row(form.price, {'label': "Prix"}) }}
-    {{ form_row(form.sold, {'label': "Déjà vendu"}) }}
+    {{ form_row(form.sold, {'label': "Indisponible"}) }}
     <button class="btn btn-success">{{ buttonContent | default("Créer") }}</button>
 {{ form_end(form) }}

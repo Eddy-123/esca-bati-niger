@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminArticleController!{% endblock %}
+{% block title %}Espace d'administration{% endblock %}
 
 {% block body %}
     {% for message in app.flashes('success') %}
@@ -11,7 +11,8 @@
     <h1>L'ensemble des éléments déjà publiés</h1>
     <div class="container">
         <div class="row my-5">
-            <h3 class="mx-auto"><a href="{{ path('admin_article_create') }}" class="btn btn-secondary">Nouvelle publication</a></h3>
+            <h3 class="mr-auto"><a href="{{ path('admin_article_create') }}" class="btn btn-secondary">Nouvelle publication</a></h3>
+            <h3 class="ml-auto"><a href="{{ path('app_logout') }}" class="btn btn-secondary">Déconnexion</a></h3>
             <table class="table table-striped">
                 <thead>
                     <tr>

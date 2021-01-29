@@ -46,6 +46,82 @@ class MainController extends AbstractController
     }
     
     /**
+     * @Route("/formation", name="main_training")
+     */
+    public function training(ArticleRepository $articleRepository): Response
+    {
+        $articles = $this->repository->findBy([
+            "category" => "Formation",
+            "sold" => false
+        ]);
+        return $this->render('main/all.html.twig',[
+            'articles' => $articles
+        ]);
+    }
+    
+    /**
+     * @Route("/construction", name="main_building")
+     */
+    public function building(ArticleRepository $articleRepository): Response
+    {
+        $articles = $this->repository->findBy([
+            "category" => "Construction",
+            "sold" => false
+        ]);
+        return $this->render('main/all.html.twig',[
+            'articles' => $articles
+        ]);
+    }
+    
+    
+    /**
+     * @Route("/etude", name="main_study")
+     */
+    public function study(ArticleRepository $articleRepository): Response
+    {
+        $articles = $this->repository->findBy([
+            "category" => "Etude",
+            "sold" => false
+        ]);
+        return $this->render('main/all.html.twig',[
+            'articles' => $articles
+        ]);
+    }
+    
+    /**
+     * @Route("/immobilier", name="main_immovable")
+     */
+    public function immovable(ArticleRepository $articleRepository): Response
+    {
+        $articles = $this->repository->findBy([
+            "category" => "Immobilier",
+            "sold" => false
+        ]);
+        return $this->render('main/all.html.twig',[
+            'articles' => $articles
+        ]);
+    }
+    
+    
+    /**
+     * @Route("/contact", name="main_contact")
+     */
+    public function contact(): Response
+    {
+        return $this->render('main/empty.html.twig');        
+    }
+     
+    
+    /**
+     * @Route("/a-propos", name="main_about")
+     */
+    public function about(): Response
+    {
+        return $this->render('main/empty.html.twig');        
+    }
+    
+    
+    /**
      * @Route("/articles", name="main_all")
      */
     public function all(ArticleRepository $articleRepository): Response
@@ -55,5 +131,6 @@ class MainController extends AbstractController
             'articles' => $articles
         ]);
     }
+    
     
 }
