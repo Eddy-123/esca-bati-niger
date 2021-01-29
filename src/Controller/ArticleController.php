@@ -13,14 +13,11 @@ class ArticleController extends AbstractController
     /**
      * @var ArticleRepository
      */
-    /*
     public $repository;
     
     public function __construct(ArticleRepository $repository) {
         $this->repository = $repository;
     }
-     * 
-     */
     
     /**
      * @Route("/article/{slug}-{id}", name="article_read", requirements={"slug": "[0-9a-z\-]*"})
@@ -33,8 +30,11 @@ class ArticleController extends AbstractController
                 "slug" => $article->getSlug()
             ], 301);
         }
+        
+        $suggestions = $this->repository->findLatest();
         return $this->render('article/read.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'suggestions' => $suggestions
         ]);
     }
 }

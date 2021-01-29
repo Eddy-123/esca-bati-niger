@@ -36,7 +36,7 @@ class ArticleRepository extends ServiceEntityRepository
      */
     public function findLatest() {
         return $this->findVisibleQuery()
-                ->setMaxResults(4)
+                ->setMaxResults(3)
                 ->getQuery()
                 ->getResult()
         ;
