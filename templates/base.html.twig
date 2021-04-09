@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>{% block title %}Esca-Bati-Niger{% endblock %}</title>
-	<link rel="shortcut icon" href="index.html">
+	<link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
 	<!-- Bootstrap 4.5 CSS -->
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 	<!-- Style CSS -->
@@ -18,7 +18,7 @@
         <!-- Navigation -->
 	<nav class="navbar bg-dark navbar-white navbar-expand-lg">
 		<div class="container">
-			<a class="navbar-brand" href="{{ path('main_home') }}">EBN</a><!-- logo.png -->
+                    <a class="navbar-brand" href="{{ path('main_home') }}"><img src="{{ asset('images/logo.png') }}" alt="logo esca-bati-niger"/></a><!-- logo.png -->
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 				<span class="navbar-toggler-icon"></span>
@@ -52,9 +52,9 @@
         {% block body %}{% endblock %}
 
         <footer>
-          <p>&copy; <a href="{{ path('main_home') }}">www.esca-bati-niger.com</a></p>
           <p>Tous droits réservés</p>
-          <h6><a href="{{ path('admin_article_home') }}">Je suis administrateur</a></h6>
+          <h6><a href="{{ path('admin_article_home') }}">Connexion</a></h6>
+          <p>&copy; <a href="{{ path('main_home') }}">www.esca-bati-niger.com</a></p>
         </footer>
 
         

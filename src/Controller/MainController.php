@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ArticleRepository;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\User;
+
 
 class MainController extends AbstractController
 {
@@ -20,8 +23,14 @@ class MainController extends AbstractController
      * @var EntityManagerInterface
      */
     public $entityManager;
+    
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    public $userPasswordEncoder;
 
-    public function __construct(ArticleRepository $repository, EntityManagerInterface $entityManager) {
+    public function __construct(ArticleRepository $repository, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $userPasswordEncoder) {
+        $this->userPasswordEncoder = $userPasswordEncoder;
         $this->repository = $repository;
         $this->entityManager = $entityManager;
     }
@@ -31,18 +40,13 @@ class MainController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render('main/home.html.twig');
+        //$this->test();
+        $articles = $this->repository->findAll();
+        //dd($articles);
+        return $this->render('main/home.html.twig', [
+            "articles" => $articles
+        ]);
         
-        /*
-        $article = new Article();
-        $article->setTitle("Second article")
-                ->setContent("Contenu du second article");
-
-        $this->entityManager->persist($article);
-        $this->entityManager->flush();
-         * 
-         */
-     
     }
     
     /**
@@ -77,7 +81,7 @@ class MainController extends AbstractController
     /**
      * @Route("/etude", name="main_study")
      */
-    public function study(ArticleRepository $articleRepository): Response
+    public function study(): Response
     {
         $articles = $this->repository->findBy([
             "category" => "Etude",
@@ -91,7 +95,7 @@ class MainController extends AbstractController
     /**
      * @Route("/immobilier", name="main_immovable")
      */
-    public function immovable(ArticleRepository $articleRepository): Response
+    public function immovable(): Response
     {
         $articles = $this->repository->findBy([
             "category" => "Immobilier",
@@ -108,7 +112,7 @@ class MainController extends AbstractController
      */
     public function contact(): Response
     {
-        return $this->render('main/empty.html.twig');        
+        return $this->render('main/contact.html.twig');        
     }
      
     
@@ -124,7 +128,7 @@ class MainController extends AbstractController
     /**
      * @Route("/articles", name="main_all")
      */
-    public function all(ArticleRepository $articleRepository): Response
+    public function all(): Response
     {
         $articles = $this->repository->findLatest();
         return $this->render('main/all.html.twig',[
@@ -132,5 +136,21 @@ class MainController extends AbstractController
         ]);
     }
     
+    private function test() {
+        $user = new User();
+        $user->setEmail("esca-bati-niger@gmail.com")
+                ->setPassword($this->userPasswordEncoder->encodePassword($user, "12345678bati"));
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+        /*
+        $article = new Article();
+        $article->setTitle("Second article")
+                ->setContent("Contenu du second article");
+
+        $this->entityManager->persist($article);
+        $this->entityManager->flush();
+         * 
+         */     
+    }
     
 }

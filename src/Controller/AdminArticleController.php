@@ -10,6 +10,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Article;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use App\Service\FileUploader;
 
 class AdminArticleController extends AbstractController
 {
@@ -42,11 +44,19 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/administration/{id}", name="admin_article_update", requirements={"id": "[0-9]*"}, methods="GET|POST")
      */
-    public function update(Article $article, Request $request) {
+    public function update(Article $article, Request $request, FileUploader $fileUploader) {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()){
+            /** @var UploadedFile **/
+            $imageFile = $form->get('image')->getData();
+            
+            if($imageFile){
+                $image = $fileUploader->upload($imageFile);
+                $article->setImage($image);
+            }
+            
             $article->setUpdatedAt(new \DateTime());
             $this->entityManager->flush();
             $this->addFlash('success', "Modification réussie");
@@ -61,12 +71,20 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/administration/nouveau", name="admin_article_create")
      */
-    public function create(Request $request) {
+    public function create(Request $request, FileUploader $fileUploader) {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()){
+            /** @var UploadedFile **/
+            $imageFile = $form->get('image')->getData();
+            
+            if($imageFile){
+                $image = $fileUploader->upload($imageFile);
+                $article->setImage($image);
+            }
+            
             $this->entityManager->persist($article);
             $this->entityManager->flush();
             $this->addFlash('success', "Le nouvel élément a été créé avec succès");

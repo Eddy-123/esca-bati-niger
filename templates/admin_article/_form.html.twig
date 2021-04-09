@@ -2,7 +2,15 @@
     {{ form_row(form.title, {'label': "Titre"}) }}
     {{ form_row(form.category, {'label': "Catégorie"}) }}
     {{ form_row(form.content, {'label': "Contenu"}) }}
-    {{ form_row(form.price, {'label': "Prix"}) }}
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(form.price, {'label': "Prix"}) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(form.currency, {'label': "Devise", 'attr': {'placeholder': "Fcfa/Da/Euro"}}) }}
+        </div>
+    </div>
+    {{ form_row(form.image, {'label': "Image"}) }}
     {{ form_row(form.sold, {'label': "Indisponible"}) }}
     <button class="btn btn-success">{{ buttonContent | default("Créer") }}</button>
 {{ form_end(form) }}

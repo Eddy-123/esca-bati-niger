@@ -21,13 +21,13 @@ class Article
     private $id;
 
     /**
-     * @Assert\Length(min=5)
+     * @Assert\Length(min=1)
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
-     * @Assert\Length(min=8)
+     * @Assert\Length(min=1)
      * @ORM\Column(type="text", nullable=true)
      */
     private $content;
@@ -55,7 +55,18 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $category = "Inconnue";
+    private $category = "";
+
+    /**
+     * @Assert\NotBlank(groups={"create"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image = "logo.png";
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $currency;
 
     public function __construct() {
         $this->created_at = new \DateTime();
@@ -180,6 +191,30 @@ class Article
     public function setCategory(string $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency(?string $currency): self
+    {
+        $this->currency = $currency;
 
         return $this;
     }

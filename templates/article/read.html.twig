@@ -15,10 +15,10 @@
                     </p>
                 </div>
                 <div class="col-md-4 my-5">
-                    <img src="{{ asset('img/1.jpg') }}" class="w-100">
+                    <img src="{{ asset('uploads/images/' ~ article.image) }}" class="w-100">
                 </div>
                 <div class="col-md-4 my-5 d-flex align-self-center justify-content-end">
-                    <h3>Prix : <strong>{{ article.formattedPrice }} FCFA</strong></h3>
+                    <h3>Prix : <strong>{{ article.formattedPrice }} {{ article.currency }}</strong></h3>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
             {% for suggestion in suggestions %}
 
                 <div class="col-md-4 col-sm-6 col-xs-12 my-4">
-                    <img src="{{ asset('img/1.jpg') }}" class="w-100">
+                    <img src="{{ asset('uploads/images/' ~ suggestion.image) }}" class="w-100">
                     <h4 class="my-4">{{ suggestion.title }}</h4>
                     
                     <p class="d-flex justify-content-between">

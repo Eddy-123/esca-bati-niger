@@ -9,6 +9,23 @@
         </div>
     </div>
 
+        <div class="row my-5">
+            {% for article in articles %}
+
+                <div class="col-md-4 col-sm-6 col-xs-12 my-4">
+                    <img src="{{ asset('uploads/images/' ~ article.image) }}" class="w-100">
+                    <h4 class="my-4">{{ article.title }}</h4>
+                    
+                    <p class="d-flex justify-content-between">
+                        <a href="{{ path('article_read', {"id": article.id, "slug": article.slug}) }}" class="btn btn-outline-dark btn-md">Détail</a>
+                        <a href="{{ path('article_read', {"id": article.id, "slug": article.slug}) }}" class="btn btn-outline-dark btn-md">{{ article.price }}</a>
+                    </p>
+                </div>
+                
+            {% endfor %}
+
+        </div>
+   
 	<!-- End Socket -->
 
 	<div class="container my-5"></div>

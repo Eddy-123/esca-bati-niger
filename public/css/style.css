@@ -2,7 +2,9 @@
 :root{
   --black-font-color: #2e3440;
 }
-
+a{
+    text-decoration: none;
+}
 
 /*-- Body Reset --*/
 body {
@@ -40,10 +42,19 @@ body {
 
 .nav-item{
   padding: .5rem;
+  color: white;
+}
+
+.nav-item:hover{
+    color: white;
 }
 
 .nav-link{
-  color: white;
+  color: #FFD80!important;
+}
+
+.nav-link a{
+    color: #FFD80!important;
 }
 
 /*============= FOOTER =============*/
